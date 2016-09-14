@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Demonstração 1</title>
+
+		<link rel="stylesheet" href="assets/styles/style.css" />
+	</head>
+	<body data-ng-app="demo-1">
+		<div class="container" data-ng-controller="TodoController as todoController">
+			<header class="header">
+				<h1 class="header--title">Todo App</h1>
+			</header>
+
+			<section class="main">
+				<div class="form">
+					<input type="text"
+								 placeholder="Description"
+								 title="Description"
+								 class="form--task"
+								 data-ng-model="todoController.newTask" />
+					<button type="button"
+									class="button button--default form--add"
+									data-ng-click="todoController.addTask()">
+						Add
+					</button>
+				</div>
+
+				<table class="list">
+					<thead>
+						<tr class="list--header">
+							<th class="list--header-done">Done</th>
+							<th>Task</th>
+							<th class="list--header-remove">Remove</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="list--row"
+								data-ng-repeat="task in todoController.tasks | filter: { done: todoController.filterList }">
+							<td>
+								<label class="list--check">
+									<input type="checkbox"
+												 title="Done?"
+												 data-ng-model="task.done" />
+								</label>
+							</td>
+							<td class="list--description"
+									data-ng-class="{ 'list--description-completed': task.done }">
+								{{ task.description }}
+							</td>
+							<td>
+								<button type="button"
+												class="button button--outline list--remove"
+												data-ng-click="todoController.removeTask($index)">
+									X
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="menu-bottom">
+					<button type="button"
+									class="button button--outline"
+									data-ng-class="{ 'button--outline-active': todoController.filter === 'active' }"
+									data-ng-click="todoController.changeFilter('active')">
+						Active
+					</button>
+					<button type="button"
+									class="button button--outline"
+									data-ng-class="{ 'button--outline-active': todoController.filter === 'completed' }"
+									data-ng-click="todoController.changeFilter('completed')">
+						Completed
+					</button>
+				</div>
+			</section>
+		</div>
+
+		<script src="../node_modules/angular/angular.min.js"></script>
+
+		<script src="scripts/app.module.js"></script>
+		<script src="scripts/todo/todoController.js"></script>
+	</body>
+</html>

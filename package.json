@@ -1,0 +1,30 @@
+{
+  "name": "workshop-angular-s2it",
+  "version": "1.0.0",
+  "description": "Demonstracoes para o Workshop de Angular S2IT",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server -p 6789 --cors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felulo/workshop-angular-s2it.git"
+  },
+  "keywords": [
+    "Workshop",
+    "AngularJS",
+    "S2IT"
+  ],
+  "author": "Felipe Luis Lopes",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/felulo/workshop-angular-s2it/issues"
+  },
+  "homepage": "https://github.com/felulo/workshop-angular-s2it#readme",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
