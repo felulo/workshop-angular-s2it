@@ -1,0 +1,11 @@
+{
+	"question": "Uma das quedas d'água mais altas do mundo tem 979 metros de altura. Como ela se chama e onde fica?",
+	"type": "numeric",
+	"answers": [
+		"Cataratas do Iguaçu, entre o Brasil e a Argentina",
+		"Quedas Vitória, entre a Zâmbia e Zimbábue",
+		"Ramnefjillsfossen, na Noruega",
+		"Salto Ángel, na Venezuela"
+	],
+	"correct": 3
+}

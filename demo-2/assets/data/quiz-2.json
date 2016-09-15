@@ -1,0 +1,11 @@
+{
+	"question": "Quantos países fazem atualmente parte da Organização das Nações Unidas?",
+	"type": "numeric",
+	"answers": [
+		"183",
+		"189",
+		"193",
+		"196"
+	],
+	"correct": 2
+}

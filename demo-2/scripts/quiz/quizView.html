@@ -1,0 +1,28 @@
+<div class="quiz">
+	<p class="question">
+		{{ question }}
+	</p>
+	<ul class="answers">
+		<li class="answer"
+				data-ng-repeat="answer in answers">
+			<label>
+				<span class="answer--letter"
+							data-ng-if="type === 'character'"
+							data-ng-class="{ 'answer--letter-active': $parent.response == $index }">
+					{{ $index | letter }})
+				</span>
+				<span class="answer--letter"
+							data-ng-if="type === 'numeric'"
+							data-ng-class="{ 'answer--letter-active': $parent.response == $index }">
+					{{ $index + 1 }})
+				</span>
+				<span class="answer--description">{{ answer }}</span>
+				<input type="radio"
+							 class="answer--check"
+							 name="answer"
+							 data-ng-value="$index"
+							 data-ng-model="$parent.response" />
+			</label>
+		</li>
+	</ul>
+</div>

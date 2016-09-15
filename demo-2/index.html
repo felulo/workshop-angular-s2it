@@ -3,8 +3,90 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Demonstração 2</title>
+
+		<link rel="stylesheet" href="assets/styles/style.css" />
 	</head>
-	<body>
-		Olá galera - Demonstração 2
+	<body data-ng-app="demo-2">
+		<div class="container"
+				 data-ng-controller="QuizesController as quizesController">
+			<header class="header">
+				<h1 class="header--title">Quiz App</h1>
+			</header>
+
+			<section class="main"
+							 data-ng-if="quizesController.status !== 'end'">
+				<data-quiz data-ng-repeat="quiz in quizesController.quizes"
+									 data-question="quiz.question"
+									 data-type="quiz.type"
+									 data-answers="quiz.answers"
+									 data-response="quiz.response"
+									 data-ng-if="$index === quizesController.currentQuiz"></data-quiz>
+
+				<button type="button"
+								class="button button--default button--default-left"
+								data-ng-if="quizesController.currentQuiz > 0"
+								data-ng-click="quizesController.prevQuiz()">
+					Prev
+				</button>
+				<button type="button"
+								class="button button--default button--default-right"
+								data-ng-if="quizesController.currentQuiz < quizesController.quizes.length - 1"
+								data-ng-click="quizesController.nextQuiz()">
+					Next
+				</button>
+				<button type="button"
+								class="button button--default button--default-right"
+								data-ng-if="quizesController.currentQuiz === quizesController.quizes.length - 1"
+								data-ng-click="quizesController.endQuiz()">
+					End
+					</button>
+			</section>
+
+			<section class="result"
+							 data-ng-if="quizesController.status === 'end'">
+				<table class="list">
+					<thead>
+						<tr class="list--header">
+							<th>Question</th>
+							<th>Response<br>User</th>
+							<th>Response<br>Correct</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="list--row"
+								data-ng-repeat="quiz in quizesController.quizes">
+							<td class="list--description">
+								{{ quiz.question }}
+							</td>
+							<td>
+								<span data-ng-if="quiz.response < 0">-</span>
+								<span data-ng-if="quiz.response > -1 && quiz.type == 'numeric'">{{ quiz.response + 1}}</span>
+								<span data-ng-if="quiz.response > -1 && quiz.type == 'character'">{{ quiz.response | letter }}</span>
+							</td>
+							<td>
+								{{ quiz.response == quiz.correct ? 'Yes' : 'No' }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<button type="button"
+								class="button button--default"
+								data-ng-click="quizesController.newQuiz()">
+					New Quiz
+				</button>
+			</section>
+		</div>
+
+		<script src="../node_modules/angular/angular.min.js"></script>
+
+		<script src="scripts/app.module.js"></script>
+
+		<script src="scripts/letter/letterFilter.js"></script>
+
+		<script src="scripts/quiz/quizDirective.js"></script>
+
+		<script src="scripts/quizes/quizesResource.js"></script>
+		<script src="scripts/quizes/quizesController.js"></script>
 	</body>
 </html>
